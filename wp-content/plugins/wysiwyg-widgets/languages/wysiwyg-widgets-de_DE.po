@@ -1,0 +1,131 @@
+# Translation of Plugins - WYSIWYG Widgets / Widget Blocks - Development (trunk) in German
+# This file is distributed under the same license as the Plugins - WYSIWYG Widgets / Widget Blocks - Development (trunk) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2017-08-22 10:21+0200\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 2.0.3\n"
+"Language: de\n"
+"Project-Id-Version: Plugins - WYSIWYG Widgets / Widget Blocks - Development (trunk)\n"
+"POT-Creation-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+
+#. Plugin Name of the plugin/theme
+msgid "Widget Content Blocks"
+msgstr "Widget Inhaltsblöcke"
+
+#: includes/class-admin.php:54
+msgid "Rate this plugin"
+msgstr "Geben Sie eine Bewertung für dieses Plugin ab"
+
+#: includes/class-admin.php:49
+msgid "How do I use this?"
+msgstr "Wie wird das verwendet?"
+
+#. Author URI of the plugin/theme
+msgid "http://dvk.co/"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Danny van Kooten"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Adds a WYSIWYG Widget with a rich text editor and media upload functions."
+msgstr "Dieses Plugin fügt ein WYSIWYG-Widget mit komplettem Text-Editor und Mediathek-Funktionen ein."
+
+#. Plugin URI of the plugin/theme
+msgid "https://dannyvankooten.com/wordpress-plugins/wysiwyg-widgets/"
+msgstr ""
+
+#: includes/plugin.php:36
+msgid "No widget blocks found in Trash"
+msgstr "Es wurden keine Widget Inhaltsblöcke im Papierkorb gefunden."
+
+#: includes/plugin.php:34
+msgid "Search Widget Blocks"
+msgstr "Widget Inhaltsblöcke durchsuchen"
+
+#: includes/plugin.php:33
+msgid "View Widget Block"
+msgstr "Widget Inhaltsblock ansehen"
+
+#: includes/plugin.php:32
+msgid "All Widget Blocks"
+msgstr "Alle Widget Inhaltsblöcke"
+
+#: includes/plugin.php:30
+msgid "Edit Widget Block"
+msgstr "\tWidget Inhaltsblock bearbeiten"
+
+#: includes/plugin.php:29
+msgid "Add New Widget Block"
+msgstr "\tNeuen Widget Inhaltsblock hinzufügen"
+
+#: includes/plugin.php:28 includes/plugin.php:31
+msgid "New Widget Block"
+msgstr "\tNeuer Widget Inhaltsblock"
+
+#: includes/plugin.php:27
+msgid "Widget Block"
+msgstr "Widget Inhaltsblock"
+
+#: includes/plugin.php:26 includes/plugin.php:37
+msgid "Widget Blocks"
+msgstr "\tWidget Inhaltsblöcke"
+
+#: includes/class-widget.php:124
+msgid "Manage your widget blocks %shere%s"
+msgstr "Verwalte Deine Widget Inhaltsblöcke %shier%s"
+
+#: includes/class-widget.php:121
+msgid "Show title?"
+msgstr "\tTitel anzeigen?"
+
+#: includes/class-widget.php:111
+msgid "Select a widget block"
+msgstr "Wähle einen Widget Inhaltsblock aus"
+
+#: includes/class-widget.php:109 includes/plugin.php:35
+msgid "No widget blocks found"
+msgstr "\tKeine Widget Inhaltsblöcke gefunden"
+
+#: includes/class-widget.php:105
+msgid "Widget Block to show:"
+msgstr "\tDiesen Widget Inhaltsblock anzeigen:"
+
+#: includes/class-widget.php:55
+msgid "No widget block found with ID %d, please select an existing Widget Block in the widget settings."
+msgstr "Kein Widget Inhaltsblock mit der ID %d gefunden, bitte wähle einen existierenden Inhaltsblock in den Widget Einstellungen."
+
+#: includes/class-widget.php:53
+msgid "Please select a Widget Block to show in this area."
+msgstr "Bitte wähle den Widget Inhaltsblock, der in diesem Bereich angezeigt werden soll."
+
+#: includes/class-widget.php:12
+msgid "Displays one of your Widget Blocks."
+msgstr "Zeige einen deiner Widget Inhaltsblöcke an."
+
+#: includes/class-admin.php:62
+msgid "Other useful plugins"
+msgstr "Weitere nützliche Plugins."
+
+#: includes/class-admin.php:57
+msgid "Vote \"works\" on the WordPress.org plugin page"
+msgstr "Bestätige, dass es funktioniert auf der WordPress.org plugin page"
+
+#: includes/class-admin.php:56
+msgid "Leave a &#9733;&#9733;&#9733;&#9733;&#9733; review on WordPress.org"
+msgstr "Hinterlasse eine &#9733;&#9733;&#9733;&#9733;&#9733; Bewertung auf WordPress.org"
+
+#: includes/class-admin.php:50
+msgid "Show this widget block by going to your %swidgets page%s and then dragging the <strong>WYSIWYG Widget</strong> to one of your widget areas."
+msgstr "Aktiviere diesen Widget Inhaltsblock, indem du unter %s\"Widgets\"%s den Block <strong>WYSIWIG Widget</strong> in eine deiner Widget Areas ziehst."
+
+#: includes/class-admin.php:33
+msgid "More.."
+msgstr "mehr..."
