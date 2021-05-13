@@ -592,7 +592,6 @@ textarea {
 .single-attachment .nav-previous a,
 .single-attachment .nav-next a {
     height: auto;
-    font-size: 16px;
     font-size: 1.6rem;
     padding: 4px 10px;
     background: #000;
@@ -895,7 +894,7 @@ body.menu-open .menu-sidebar {
     overflow: hidden;
     position: relative;
     text-decoration: none;
-    border: 3px double rgb(170, 17, 0);
+    border: 5px solid rgb(170, 17, 0);
     -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
