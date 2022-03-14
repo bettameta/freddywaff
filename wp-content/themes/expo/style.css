@@ -816,14 +816,26 @@ body.menu-open .menu-sidebar {
 .site-title-container {
     position: relative;
 }
- 
+
+/** NAME Freddy Waff **/
 .site-title {
-    font-size: 20px;
-    font-size: 2.5rem;
-    letter-spacing: 3px;
+    font-size: 15px;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
     text-transform: uppercase;
     position: relative;
     z-index: 11;
+    width: 300px;
+}
+ 
+@media (min-width: 768px){
+    .site-title {
+        font-size: 20px;
+        font-size: 2.5rem;
+        text-transform: uppercase;
+        position: relative;
+        z-index: 11;
+    }
 }
  
 /** NAME **/
@@ -836,7 +848,12 @@ body.menu-open .menu-sidebar {
 .site-title a:hover {
     color: rgba(255,255,255,1);
 }
- 
+/* Needed to hide the ENTER container from bottom projects area in new version
+of WP. ------------------------> 
+.site-description-container{
+	top: 25%;
+	left: 55%;
+} */
 .site-description-container {
     position: absolute;
     top: 50%;
@@ -859,42 +876,67 @@ body.menu-open .menu-sidebar {
     color: rgba(255,255,255,0.75);
     text-shadow: 0px 0px 2px rgba(0,0,0,0.3);
     font-weight: normal;
-    line-height: 1;
+    line-height: .5;
     text-align: center;
     -webkit-transition: opacity 0.4s;
     transition: opacity 0.4s;
 }
+@media (min-width: 768px){
+    .site-description {
+        line-height: 1;
+    }
+}
  
 .site-description span:nth-child(6n+1) {
     font-size: 4rem;
-    font-size: 4rem;
-    line-height: 5rem;
+    /* The Word PRODUCTION */
+    font-size: 2.5rem;
+    line-height: 2.5rem;
     display: block;
 }
- 
+
+@media (min-width: 768px){
+    .site-description span:nth-child(6n+1) {
+        font-size: 4rem;
+        line-height: 5rem;
+    }
+}
+
+/* The Word DESIGNER */ 
 .site-description span:nth-child(6n+2),
 .site-description span:nth-child(6n+3),
 .site-description span:nth-child(6n+4) {
-    font-size: 60px;
-    line-height: 50px;
+    font-size: 40px;
+    line-height: 20px;
 }
- 
+
+/* THE WORD DESIGNER */ 
+@media (min-width: 768px){
+    .site-description span:nth-child(6n+2),
+    .site-description span:nth-child(6n+3),
+    .site-description span:nth-child(6n+4) {
+        font-size: 60px;
+        line-height: 50px;
+    }
+}
+
 .site-description span:nth-child(6n+5),
 .site-description span:nth-child(6n+6) {
     font-size: 80px;
     line-height: 70px;
 }
+
 /**** OUTLINE FOR ENTER BUTTON ******/ 
 .post-trigger {
     color: rgba(255,255,255,0.8);
-    height: 100px;
-    width: 110px;
+    height: 80px;
+    width: 80px;
     background: rgba(255, 255, 255, 0.1);
     display: table;
     overflow: hidden;
     position: relative;
     text-decoration: none;
-    border: 5px solid rgb(170, 17, 0);
+    border: 3px solid rgb(170, 17, 0);
     -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
@@ -903,7 +945,17 @@ body.menu-open .menu-sidebar {
     -webkit-transition: all 0.5s;
     transition: all 0.5s;
     margin: auto;
-    margin-top: 2em;
+    margin-top: .5em;
+}
+@media (min-width: 768px){
+    /**** OUTLINE FOR ENTER BUTTON ******/ 
+    .post-trigger {
+        height: 100px;
+        width: 100px;
+        border: 5px solid rgb(170, 17, 0);
+        margin-top: 1em;
+    
+    }
 }
  
 .post-trigger:before {
