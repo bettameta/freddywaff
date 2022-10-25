@@ -21,7 +21,7 @@ function expo_paging_prev_nav() {
     <?php
         $next_url = remove_query_arg( 'prevlink', next_posts( $max_page, false ) );
         if ( get_next_posts_link() ) : ?>
-        <div class="paging-navigation navs nav-previous"><?php next_posts_link( __( 'Older posts', 'expo' ) ); ?></div>
+        <div class="paging-navigation navs nav-previous"><?php next_posts_link( __( 'Previous Projects', 'expo' ) ); ?></div>
         <?php endif; ?>
     <?php
 }
@@ -39,7 +39,7 @@ function expo_paging_next_nav() {
     }
     ?>
     <?php if ( get_previous_posts_link() ) : ?>
-        <div class="navs nav-next"><?php previous_posts_link( __( 'Newer posts', 'expo' ) ); ?></div>
+        <div class="navs nav-next"><?php previous_posts_link( __( 'Newer projects', 'expo' ) ); ?></div>
         <?php endif; ?>
     <?php
 }
