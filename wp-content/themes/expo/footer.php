@@ -27,8 +27,8 @@
         } ?>
     </div><!-- .social-menu -->
 
-    <div class="site-info">
-        <span><?php printf( __( '&#169 Freddy Waff | 2021', 'expo' ) ); ?></span>
+    <div class="site-info" style="font-size: 10px;">
+        <span><?php printf( __( '&#169 Freddy Waff | 2011 -</span><script>document.write(new Date().getFullYear());</script>', 'expo' ) ); ?>
     </div><!-- .site-info -->
 
 </div><!-- .menu-sidebar -->
