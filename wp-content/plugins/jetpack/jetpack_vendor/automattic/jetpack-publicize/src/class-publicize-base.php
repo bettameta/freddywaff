@@ -217,6 +217,7 @@ abstract class Publicize_Base {
 
 		// Default checkbox state for each Connection.
 		add_filter( 'publicize_checkbox_default', array( $this, 'publicize_checkbox_default' ), 10, 2 );
+		add_filter( 'jetpack_open_graph_tags', array( $this, 'get_sig_image_for_post' ), 10, 1 );
 
 		// Alter the "Post Publish" admin notice to mention the Connections we Publicized to.
 		add_filter( 'post_updated_messages', array( $this, 'update_published_message' ), 20, 1 );
@@ -1045,20 +1046,67 @@ abstract class Publicize_Base {
 			'auth_callback' => array( $this, 'message_meta_auth_callback' ),
 		);
 
+		$already_shared_flag_args = array(
+			'type'          => 'boolean',
+			'description'   => __( 'Whether or not the post has already been shared.', 'jetpack-publicize-pkg' ),
+			'single'        => true,
+			'default'       => false,
+			'show_in_rest'  => array(
+				'name' => 'jetpack_social_post_already_shared',
+			),
+			'auth_callback' => array( $this, 'message_meta_auth_callback' ),
+		);
+
 		$jetpack_social_options_args = array(
 			'type'          => 'object',
 			'description'   => __( 'Post options related to Jetpack Social.', 'jetpack-publicize-pkg' ),
 			'single'        => true,
-			'default'       => array(),
+			'default'       => array(
+				'image_generator_settings' => array(
+					'template' => ( new Social_Image_Generator\Settings() )->get_default_template(),
+					'enabled'  => false,
+				),
+			),
 			'show_in_rest'  => array(
 				'name'   => 'jetpack_social_options',
 				'schema' => array(
 					'type'       => 'object',
 					'properties' => array(
-						'attached_media' => array(
+						'attached_media'           => array(
 							'type'  => 'array',
 							'items' => array(
-								'type' => 'number',
+								'type'       => 'object',
+								'properties' => array(
+									'id'  => array(
+										'type' => 'number',
+									),
+									'url' => array(
+										'type' => 'string',
+									),
+								),
+							),
+						),
+						'image_generator_settings' => array(
+							'type'       => 'object',
+							'properties' => array(
+								'enabled'     => array(
+									'type' => 'boolean',
+								),
+								'custom_text' => array(
+									'type' => 'string',
+								),
+								'image_type'  => array(
+									'type' => 'string',
+								),
+								'image_id'    => array(
+									'type' => 'number',
+								),
+								'template'    => array(
+									'type' => 'string',
+								),
+								'token'       => array(
+									'type' => 'string',
+								),
 							),
 						),
 					),
@@ -1075,11 +1123,13 @@ abstract class Publicize_Base {
 			$message_args['object_subtype']                  = $post_type;
 			$tweetstorm_args['object_subtype']               = $post_type;
 			$publicize_feature_enable_args['object_subtype'] = $post_type;
+			$already_shared_flag_args['object_subtype']      = $post_type;
 			$jetpack_social_options_args['object_subtype']   = $post_type;
 
 			register_meta( 'post', $this->POST_MESS, $message_args );
 			register_meta( 'post', $this->POST_TWEETSTORM, $tweetstorm_args );
 			register_meta( 'post', self::POST_PUBLICIZE_FEATURE_ENABLED, $publicize_feature_enable_args );
+			register_meta( 'post', $this->POST_DONE . 'all', $already_shared_flag_args );
 			register_meta( 'post', self::POST_JETPACK_SOCIAL_OPTIONS, $jetpack_social_options_args );
 		}
 	}
@@ -1437,6 +1487,26 @@ abstract class Publicize_Base {
 	}
 
 	/**
+	 * Adds the sig image to the meta tags array.
+	 *
+	 * @param array $tags Current tags.
+	 */
+	public function get_sig_image_for_post( $tags ) {
+		$generated_image_url = Social_Image_Generator\get_image_url( get_the_ID() );
+		if ( ! empty( $generated_image_url ) ) {
+			$tags = array_merge(
+				$tags,
+				array(
+					'og:image'        => $generated_image_url,
+					'og:image:width'  => 1200,
+					'og:image:height' => 630,
+				)
+			);
+		}
+		return $tags;
+	}
+
+	/**
 	 * Util
 	 */
 
@@ -1547,6 +1617,15 @@ abstract class Publicize_Base {
 	}
 
 	/**
+	 * Check if the social image generator is enabled.
+	 *
+	 * @return bool
+	 */
+	public function has_social_image_generator_feature() {
+		return Current_Plan::supports( 'social-image-generator' );
+	}
+
+	/**
 	 * Call the WPCOM REST API to calculate the scheduled shares.
 	 *
 	 * @param string $blog_id The blog_id.
@@ -1581,6 +1660,8 @@ abstract class Publicize_Base {
 		return $has_paid_plan;
 	}
 }
+
+// phpcs:disable Universal.Files.SeparateFunctionsFromOO.Mixed -- TODO: Move these functions to some other file.
 
 /**
  * Get Calypso URL for Publicize connections.
