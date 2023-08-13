@@ -4,3 +4,4 @@ wp-config.php
 .htaccess
 wp-content/uploads
 wp-content/ai1wm-backups
+wp-content/plugins
