@@ -208,7 +208,7 @@ class WPCOM_REST_API_V2_Endpoint_Memberships extends WP_REST_Controller {
 
 		if ( ( defined( 'IS_WPCOM' ) && IS_WPCOM ) ) {
 			require_lib( 'memberships' );
-			$connected_destination_account_id = Jetpack_Memberships::get_connected_account_id();
+			$connected_destination_account_id = get_connected_account_id_for_site( get_current_blog_id() );
 			if ( ! $connected_destination_account_id ) {
 				return new WP_Error( 'no-destination-account', __( 'Please set up a Stripe account for this site first', 'jetpack' ) );
 			}
@@ -262,7 +262,7 @@ class WPCOM_REST_API_V2_Endpoint_Memberships extends WP_REST_Controller {
 	 *
 	 * @param \WP_REST_Request $request - request passed from WP.
 	 *
-	 * @return WP_Error|array ['products','connected_account_id','connect_url','should_upgrade_to_access_memberships','upgrade_url']
+	 * @return WP_Error|array ['products','connected_account_id','connect_url']
 	 */
 	public function get_status( \WP_REST_Request $request ) {
 		$product_type = $request['type'];
