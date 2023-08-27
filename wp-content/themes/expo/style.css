@@ -514,6 +514,7 @@ textarea {
 .single .nav-links {
     background-color: #000;
     overflow: hidden;
+    padding: 0 15%;
 }
  
 .single .nav-previous,
@@ -535,11 +536,12 @@ textarea {
  
 .single .nav-previous {
     float: left;
-    text-align: right;
+    /*text-align: right;*/
 }
  
 .single .nav-next {
     float: right;
+    text-align: right;
 }
  
 .single .nav-previous.last,
@@ -549,8 +551,8 @@ textarea {
  
 .postnav-container {
     display: table-cell;
-    vertical-align: bottom;
-    padding: 20px;
+    /*vertical-align: bottom;
+    padding: 20px;*/
 }
  
 .meta-nav {
@@ -1048,7 +1050,7 @@ of WP. ------------------------>
  
 .intro {
     min-height: 300px;
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
     position: relative;
@@ -1077,6 +1079,8 @@ of WP. ------------------------>
 .home.blog .intro,
 .archive .intro,
 .search .intro {
+    /* landing page image */
+    background-size: cover;
     position: absolute;
     z-index: 10;
     overflow: hidden;
@@ -1578,7 +1582,7 @@ h1.entry-title a:hover {
 }
  
 .hentry .entry-footer {
-    border-top: 2px solid #333;
+   /* border-top: 2px solid #333;*/
     padding-top: 2em;
     margin-top: 2em;
     font-size: 1.6rem;

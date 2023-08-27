@@ -82,10 +82,27 @@ function expo_post_nav() {
     <nav class="navigation post-navigation" role="navigation">
         <h1 class="screen-reader-text"><?php _e( 'Post navigation', 'expo' ); ?></h1>
         <div class="nav-links">
-            <?php
-                previous_post_link( '<div class="nav-previous' . $next_class . '"' . $prev_thumbnail_url . '>%link</div>', _x( '<div class="postnav-container"><span class="meta-nav">Previous Post</span>%title</div>', 'Previous post link', 'expo' ) );
-                next_post_link(     '<div class="nav-next' . $prev_class . '"' . $next_thumbnail_url . '>%link</div>',     _x( '<div class="postnav-container"><span class="meta-nav">Next Post</span>%title</div>', 'Next post link',     'expo' ) );
-            ?>
+        <?php
+            previous_post_link(
+                '<div class="nav-previous' . $next_class . '">%link</div>',
+                _x(
+                    '<div class="postnav-container"><span class="meta-nav"><span style="font-size: 2em;">⇦</span></span>%title</div>',
+                    'Previous post link',
+                    'expo'
+                )
+            );
+            
+            next_post_link(
+                '<div class="nav-next' . $prev_class . '">%link</div>',
+                _x(
+                    '<div class="postnav-container"><span class="meta-nav"><span style="font-size: 2em;">⇨</span>
+                    </span>%title</div>',
+                    'Next post link',
+                    'expo'
+                )
+            );
+        ?>
+
         </div><!-- .nav-links -->
     </nav><!-- .navigation -->
     <?php
