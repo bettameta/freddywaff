@@ -191,12 +191,12 @@ const CompleteBackup = ( { latestTime, stats } ) => {
 					! backupsStopped &&
 					createInterpolateElement(
 						__(
-							'<Button>See backups in the cloud</Button><br/><ExternalLink>Or view your most recent restore point</ExternalLink>',
+							'<Button>See your backups in the cloud</Button><br/><ExternalLink>View activity log</ExternalLink>',
 							'jetpack-backup-pkg'
 						),
 						{
 							Button: (
-								<a
+								<ExternalLink
 									className="button"
 									href={ getRedirectUrl( 'jetpack-backup', { site: domain } ) }
 									onClick={ trackSeeBackupsCtaClick }
@@ -284,6 +284,7 @@ const CompleteBackup = ( { latestTime, stats } ) => {
 
 const InProgressBackup = ( { progress, showProgressBar = true } ) => {
 	const domain = useSelect( select => select( STORE_ID ).getCalypsoSlug(), [] );
+	const blogID = useSelect( select => select( STORE_ID ).getBlogId(), [] );
 	const siteTitle = useSelect( select => select( STORE_ID ).getSiteTitle(), [] );
 
 	return (
@@ -325,7 +326,7 @@ const InProgressBackup = ( { progress, showProgressBar = true } ) => {
 						{
 							a: (
 								<a
-									href={ getRedirectUrl( 'jetpack-backup', { site: domain } ) }
+									href={ getRedirectUrl( 'jetpack-backup', { site: blogID ?? domain } ) }
 									target="_blank"
 									rel="noreferrer"
 								/>
