@@ -90,6 +90,8 @@ class REST_Controller {
 		);
 
 		// Dismiss a notice.
+		// Flagged to be removed after deprecation.
+		// @deprecated $$next_version$$
 		register_rest_route(
 			'jetpack/v4',
 			'/social/dismiss-notice',
@@ -167,7 +169,7 @@ class REST_Controller {
 				'notice'            => array(
 					'description' => __( 'Name of the notice to dismiss', 'jetpack-publicize-pkg' ),
 					'type'        => 'string',
-					'enum'        => array( 'instagram', 'advanced-upgrade-nudge-admin', 'advanced-upgrade-nudge-editor' ),
+					'enum'        => array( 'instagram', 'advanced-upgrade-nudge-admin', 'advanced-upgrade-nudge-editor', 'auto-conversion-editor-notice' ),
 					'required'    => true,
 				),
 				'reappearance_time' => array(

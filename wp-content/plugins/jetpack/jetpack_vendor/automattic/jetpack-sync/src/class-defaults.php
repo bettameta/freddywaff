@@ -87,6 +87,8 @@ class Defaults {
 		'jetpack_protect_key',
 		'jetpack_publicize_options',
 		'jetpack_relatedposts',
+		'jetpack_social_settings',
+		'jetpack_social_autoconvert_images',
 		'jetpack_sso_match_by_email',
 		'jetpack_sso_require_two_step',
 		'jetpack_sync_non_blocking', // is non-blocking Jetpack Sync flow enabled.
@@ -161,6 +163,7 @@ class Defaults {
 		'uploads_use_yearmonth_folders',
 		'users_can_register',
 		'verification_services_codes',
+		'videopress_private_enabled_for_site',
 		'wordads_ccpa_enabled',
 		'wordads_ccpa_privacy_policy_url',
 		'wordads_custom_adstxt',
@@ -170,19 +173,27 @@ class Defaults {
 		'wordads_display_page',
 		'wordads_display_post',
 		'wordads_second_belowpost',
+		'woocommerce_custom_orders_table_enabled',
 		'wp_mobile_app_promos',
 		'wp_mobile_excerpt',
 		'wp_mobile_featured_images',
 		'wp_page_for_privacy_policy',
+		'wpcom_ai_site_prompt',
 		'wpcom_featured_image_in_email',
+		'wpcom_gifting_subscription',
 		'wpcom_is_fse_activated',
+		'wpcom_legacy_contact',
+		'wpcom_locked_mode',
+		'wpcom_newsletter_categories',
+		'wpcom_newsletter_categories_enabled',
 		'wpcom_publish_comments_with_markdown',
 		'wpcom_publish_posts_with_markdown',
 		'wpcom_reader_views_enabled',
-		'wpcom_subscription_emails_use_excerpt',
-		'videopress_private_enabled_for_site',
-		'wpcom_gifting_subscription',
 		'wpcom_site_setup',
+		'wpcom_subscription_emails_use_excerpt',
+		'jetpack_verbum_subscription_modal',
+		'jetpack_blocks_disabled',
+		'jetpack_package_versions',
 	);
 
 	/**
@@ -732,7 +743,6 @@ class Defaults {
 		'_wp_page_template',
 		'_wp_trash_meta_comments_status',
 		'_wpas_feature_enabled',
-		'_wpas_is_tweetstorm',
 		'_wpas_mess',
 		'_wpas_options',
 		'advanced_seo_description', // Jetpack_SEO_Posts::DESCRIPTION_META_KEY.
@@ -1308,5 +1318,4 @@ class Defaults {
 	 * @var int Bool-ish. Default 0.
 	 */
 	public static $default_custom_queue_table_enabled = 0;
-
 }

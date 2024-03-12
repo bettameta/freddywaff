@@ -313,7 +313,7 @@ class Settings {
 	 * @return boolean Whether the setting is a network setting.
 	 */
 	public static function is_network_setting( $setting ) {
-		return strpos( $setting, 'network_' ) === 0;
+		return str_starts_with( $setting, 'network_' );
 	}
 
 	/**
@@ -678,5 +678,4 @@ class Settings {
 	public static function is_custom_queue_table_enabled() {
 		return (bool) self::get_setting( 'custom_queue_table_enabled' );
 	}
-
 }

@@ -503,6 +503,18 @@ abstract class SAL_Site {
 	}
 
 	/**
+	 * Indicate whether this site was upgraded from a trial plan at some point.
+	 *
+	 * @return bool
+	 */
+	public function was_upgraded_from_trial() {
+		if ( function_exists( 'has_blog_sticker' ) ) {
+			return has_blog_sticker( 'has-upgraded-from-ecommerce-trial' );
+		}
+		return false;
+	}
+
+	/**
 	 * Detect whether a site has the WooCommerce plugin active.
 	 *
 	 * @see /wpcom/public.api/rest/sal/class.json-api-site-jetpack-shadow.php.
@@ -1511,5 +1523,40 @@ abstract class SAL_Site {
 	 */
 	public function get_wpcom_site_setup() {
 		return get_option( 'wpcom_site_setup' );
+	}
+
+	/**
+	 * Returns whether the site is commercial.
+	 *
+	 * @return mixed
+	 *
+	 * - `true`: the site is commercial
+	 * - `false`: the site is not commercial
+	 * - `null`: the commercial status is not yet determined
+	 */
+	public function is_commercial() {
+		// Override if blog has the commercial stickers.
+		if ( function_exists( 'has_blog_sticker' ) ) {
+			$has_not_commercial_sticker = has_blog_sticker( 'jetpack-site-is-not-commercial-override', $this->blog_id );
+			if ( $has_not_commercial_sticker ) {
+				return false;
+			}
+			$has_commercial_sticker = has_blog_sticker( 'jetpack-site-is-commercial-override', $this->blog_id );
+			if ( $has_commercial_sticker ) {
+				return true;
+			}
+		}
+
+		$is_commercial = get_option( '_jetpack_site_is_commercial', null );
+		return $is_commercial === null ? null : (bool) $is_commercial;
+	}
+
+	/**
+	 * Returns the site's interface selection e.g. calypso vs. wp-admin
+	 *
+	 * @return string
+	 **/
+	public function get_wpcom_admin_interface() {
+		return (string) get_option( 'wpcom_admin_interface' );
 	}
 }
