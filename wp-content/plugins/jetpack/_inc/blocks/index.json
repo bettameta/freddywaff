@@ -1,6 +1,7 @@
 {
 	"production": [
 		"ai-assistant",
+		"ai-chat",
 		"ai-assistant-plugin",
 		"blogging-prompt",
 		"business-hours",
@@ -12,11 +13,11 @@
 		"contact-info",
 		"donations",
 		"eventbrite",
-		"gathering-tweetstorms",
 		"gif",
 		"google-calendar",
 		"image-compare",
 		"instagram-gallery",
+		"like",
 		"likes",
 		"mailchimp",
 		"map",
@@ -40,6 +41,7 @@
 		"slideshow",
 		"social-previews",
 		"story",
+		"subscriber-login",
 		"subscriptions",
 		"tiled-gallery",
 		"tock",
@@ -51,18 +53,27 @@
 		"site-editor-snackbars",
 		"videopress/video",
 		"ai-assistant-support",
-		"ai-assistant-form-support"
+		"ai-assistant-form-support",
+		"paywall",
+		"blogroll",
+		"blogroll-item",
+		"nextdoor",
+		"ai-assistant-usage-panel",
+		"sharing-button",
+		"sharing-buttons",
+		"ai-content-lens"
 	],
 	"beta": [
-		"ai-chat",
-		"amazon",
-		"author-recommendation",
 		"google-docs-embed",
 		"launchpad-save-modal",
 		"recipe",
 		"v6-video-frame-poster",
 		"videopress/video-chapters",
-		"paywall"
+		"create-with-voice",
+		"blog-stats",
+		"top-posts",
+		"ai-assistant-backend-prompts",
+		"ai-logo-generator"
 	],
 	"experimental": [ "ai-image", "ai-paragraph" ],
 	"no-post-editor": [
