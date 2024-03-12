@@ -110,7 +110,7 @@
                     
                     //if auto sort    
                     if ($options['autosort'] == "1")
-                        {
+                        {                                    
                             //remove the supresed filters;
                             if (isset($query->query['suppress_filters']))
                                 $query->query['suppress_filters'] = FALSE;    
