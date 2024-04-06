@@ -277,15 +277,7 @@
                         
                     if ( wp_is_mobile() )
                         return;
-                    
-                    //check if post type is sortable
-                    if(isset($options['show_reorder_interfaces'][$screen->post_type]) && $options['show_reorder_interfaces'][ $screen->post_type ] != 'show')
-                        return;
-                        
-                    //not for hierarhical
-                    //if ( is_post_type_hierarchical( $screen->post_type ) )
-                        //return; 
-                    
+                                                                
                     //if is taxonomy term filter return
                     if(is_category()    ||  is_tax())
                         return;
