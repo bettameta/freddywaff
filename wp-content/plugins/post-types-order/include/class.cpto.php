@@ -326,11 +326,7 @@
                                 {
                                     wp_die('Invalid post type');
                                 }
-                        }
-                        
-                    //add compatibility filters and code
-                    include_once(CPTPATH . '/compatibility/LiteSpeed_Cache.php');
-                    
+                        }                    
                 }
             
             
@@ -400,7 +396,7 @@
                     //trigger action completed
                     do_action('PTO/order_update_complete');
                     
-                    wp_cache_flush();
+                    CptoFunctions::site_cache_clear();
                 }
                 
                 
@@ -484,7 +480,7 @@
                     //trigger action completed
                     do_action('PTO/order_update_complete');
                     
-                    wp_cache_flush();                
+                    CptoFunctions::site_cache_clear();                
                 }
             
 

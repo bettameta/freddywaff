@@ -3,8 +3,8 @@ Contributors: nsp-code, tdgu
 Donate link: http://www.nsp-code.com/donate.php
 Tags: post order, posts order, post sort, posts sort, post types order
 Requires at least: 2.8
-Tested up to: 6.5
-Stable tag: 2.2.1
+Tested up to: 6.5.3
+Stable tag: 2.2.3
 
 Sort Posts and custom Post Type Objects (custom post types) using a Drag and Drop Sortable JavaScript AJAX interface or default WordPress dashboard. 
 
@@ -94,8 +94,16 @@ Consider upgrading to our advanced version of this plugin at a very resonable pr
 
 == Change Log ==
 
-= 2.2.1 =  
+= 2.2.3 = 
+ - When order update, attempt to clear the site / server caches. 
+ - Set Yes as default for the option to Enable sortable drag-and-drop functionality within the default WordPress post type archive.
+ - WordPress 6.5.3 compatibility tag.
 
+= 2.2.1 = 
+ - Options interface layout updates.
+ - Code cleanup
+ - Remove unused svg icon file.
+ 
 = 2.2 =
  - Formidable style fix when Autosort is active.
  - Plugin headers format update.

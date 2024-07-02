@@ -186,8 +186,8 @@
                                                 ?>
                                                 <p class="pt-item"><label>
                                                     <select name="allow_reorder_default_interfaces[<?php echo esc_attr($post_type_name) ?>]">
-                                                        <option value="no" <?php if(isset($options['allow_reorder_default_interfaces'][$post_type_name]) && $options['allow_reorder_default_interfaces'][$post_type_name] == 'no') {echo ' selected="selected"';} ?>><?php esc_html_e( "No", 'post-types-order' ) ?></option>
                                                         <option value="yes" <?php if(isset($options['allow_reorder_default_interfaces'][$post_type_name]) && $options['allow_reorder_default_interfaces'][$post_type_name] == 'yes') {echo ' selected="selected"';} ?>><?php esc_html_e( "Yes", 'post-types-order' ) ?></option>
+                                                        <option value="no" <?php if(isset($options['allow_reorder_default_interfaces'][$post_type_name]) && $options['allow_reorder_default_interfaces'][$post_type_name] == 'no') {echo ' selected="selected"';} ?>><?php esc_html_e( "No", 'post-types-order' ) ?></option>
                                                     </select> &nbsp;&nbsp;<?php echo esc_html ( $post_type_data->labels->singular_name ); ?>
                                                 </label><br />&nbsp;</p>
                                                 <?php  } ?>
