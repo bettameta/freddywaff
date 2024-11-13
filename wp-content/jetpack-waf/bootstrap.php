@@ -6,5 +6,6 @@ define( 'JETPACK_WAF_SHARE_DATA', false );
 define( 'JETPACK_WAF_SHARE_DEBUG_DATA', false );
 define( 'JETPACK_WAF_DIR', '/Users/reeserhome/Sites/freddywaff/wp-content/jetpack-waf' );
 define( 'JETPACK_WAF_WPCONFIG', '/Users/reeserhome/Sites/freddywaff/wp-content/../wp-config.php' );
+define( 'JETPACK_WAF_ENTRYPOINT', 'rules/rules.php' );
 require_once '/Users/reeserhome/Sites/freddywaff/wp-content/plugins/jetpack/vendor/autoload.php';
 Automattic\Jetpack\Waf\Waf_Runner::initialize();
