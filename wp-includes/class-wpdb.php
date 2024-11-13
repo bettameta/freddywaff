@@ -2114,8 +2114,7 @@ class wpdb {
 	 * @return bool|void True if the connection is up.
 	 */
 	public function check_connection( $allow_bail = true ) {
-		// Check if the connection is alive.
-		if ( ! empty( $this->dbh ) && mysqli_query( $this->dbh, 'DO 1' ) !== false ) {
+		if ( ! empty( $this->dbh ) && mysqli_ping( $this->dbh ) ) {
 			return true;
 		}
 
@@ -3983,13 +3982,12 @@ class wpdb {
 	 *
 	 * @since 2.5.0
 	 *
+	 * @global string $wp_version             The WordPress version string.
 	 * @global string $required_mysql_version The required MySQL version string.
 	 * @return void|WP_Error
 	 */
 	public function check_database_version() {
-		global $required_mysql_version;
-		$wp_version = wp_get_wp_version();
-
+		global $wp_version, $required_mysql_version;
 		// Make sure the server has the required MySQL version.
 		if ( version_compare( $this->db_version(), $required_mysql_version, '<' ) ) {
 			/* translators: 1: WordPress version number, 2: Minimum required MySQL version number. */

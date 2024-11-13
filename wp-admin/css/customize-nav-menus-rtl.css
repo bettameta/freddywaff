@@ -543,9 +543,8 @@
 	background: transparent;
 }
 
-#available-menu-items .accordion-section-title button .toggle-indicator {
-	display: flex;
-	align-items: center;
+#available-menu-items .accordion-section-title button {
+	display: block;
 	width: 28px;
 	height: 35px;
 	position: absolute;

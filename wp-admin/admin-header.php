@@ -203,7 +203,7 @@ if ( is_network_admin() ) {
 	$admin_body_class .= ' network-admin';
 }
 
-$admin_body_class .= ' no-customize-support svg';
+$admin_body_class .= ' no-customize-support no-svg';
 
 if ( $current_screen->is_block_editor() ) {
 	$admin_body_class .= ' block-editor-page wp-embed-responsive';
