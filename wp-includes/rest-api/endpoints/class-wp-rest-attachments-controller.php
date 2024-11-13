@@ -339,7 +339,8 @@ class WP_REST_Attachments_Controller extends WP_REST_Posts_Controller {
 		 *
 		 * @since 4.7.0
 		 *
-		 * @param WP_Post         $attachment Inserted or updated attachment object.
+		 * @param WP_Post         $attachment Inserted or updated attachment
+		 *                                    object.
 		 * @param WP_REST_Request $request    The request sent to the API.
 		 * @param bool            $creating   True when creating an attachment, false when updating.
 		 */
@@ -449,7 +450,7 @@ class WP_REST_Attachments_Controller extends WP_REST_Posts_Controller {
 	}
 
 	/**
-	 * Performs post-processing on an attachment.
+	 * Performs post processing on an attachment.
 	 *
 	 * @since 5.3.0
 	 *
@@ -470,7 +471,7 @@ class WP_REST_Attachments_Controller extends WP_REST_Posts_Controller {
 	}
 
 	/**
-	 * Checks if a given request can perform post-processing on an attachment.
+	 * Checks if a given request can perform post processing on an attachment.
 	 *
 	 * @since 5.3.0
 	 *
@@ -530,7 +531,7 @@ class WP_REST_Attachments_Controller extends WP_REST_Posts_Controller {
 			);
 		}
 
-		$supported_types = array( 'image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/avif', 'image/heic' );
+		$supported_types = array( 'image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/avif' );
 		$mime_type       = get_post_mime_type( $attachment_id );
 		if ( ! in_array( $mime_type, $supported_types, true ) ) {
 			return new WP_Error(
@@ -600,7 +601,7 @@ class WP_REST_Attachments_Controller extends WP_REST_Posts_Controller {
 			$args = $modifier['args'];
 			switch ( $modifier['type'] ) {
 				case 'rotate':
-					// Rotation direction: clockwise vs. counterclockwise.
+					// Rotation direction: clockwise vs. counter clockwise.
 					$rotate = 0 - $args['angle'];
 
 					if ( 0 !== $rotate ) {
@@ -660,7 +661,7 @@ class WP_REST_Attachments_Controller extends WP_REST_Posts_Controller {
 
 		$filename = "{$image_name}.{$image_ext}";
 
-		// Create the uploads subdirectory if needed.
+		// Create the uploads sub-directory if needed.
 		$uploads = wp_upload_dir();
 
 		// Make the file name unique in the (new) upload directory.
@@ -1206,7 +1207,7 @@ class WP_REST_Attachments_Controller extends WP_REST_Posts_Controller {
 				continue;
 			}
 
-			list( , $attr_parts ) = explode( ';', $value, 2 );
+			list( $type, $attr_parts ) = explode( ';', $value, 2 );
 
 			$attr_parts = explode( ';', $attr_parts );
 			$attributes = array();

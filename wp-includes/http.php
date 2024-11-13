@@ -45,7 +45,6 @@ function _wp_http_get_object() {
  * @param array  $args Optional. Request arguments. Default empty array.
  *                     See WP_Http::request() for information on accepted arguments.
  * @return array|WP_Error The response or WP_Error on failure.
- *                        See WP_Http::request() for information on return value.
  */
 function wp_safe_remote_request( $url, $args = array() ) {
 	$args['reject_unsafe_urls'] = true;
@@ -72,7 +71,6 @@ function wp_safe_remote_request( $url, $args = array() ) {
  * @param array  $args Optional. Request arguments. Default empty array.
  *                     See WP_Http::request() for information on accepted arguments.
  * @return array|WP_Error The response or WP_Error on failure.
- *                        See WP_Http::request() for information on return value.
  */
 function wp_safe_remote_get( $url, $args = array() ) {
 	$args['reject_unsafe_urls'] = true;
@@ -99,7 +97,6 @@ function wp_safe_remote_get( $url, $args = array() ) {
  * @param array  $args Optional. Request arguments. Default empty array.
  *                     See WP_Http::request() for information on accepted arguments.
  * @return array|WP_Error The response or WP_Error on failure.
- *                        See WP_Http::request() for information on return value.
  */
 function wp_safe_remote_post( $url, $args = array() ) {
 	$args['reject_unsafe_urls'] = true;
@@ -126,7 +123,6 @@ function wp_safe_remote_post( $url, $args = array() ) {
  * @param array  $args Optional. Request arguments. Default empty array.
  *                     See WP_Http::request() for information on accepted arguments.
  * @return array|WP_Error The response or WP_Error on failure.
- *                        See WP_Http::request() for information on return value.
  */
 function wp_safe_remote_head( $url, $args = array() ) {
 	$args['reject_unsafe_urls'] = true;
@@ -150,8 +146,20 @@ function wp_safe_remote_head( $url, $args = array() ) {
  * @param string $url  URL to retrieve.
  * @param array  $args Optional. Request arguments. Default empty array.
  *                     See WP_Http::request() for information on accepted arguments.
- * @return array|WP_Error The response array or a WP_Error on failure.
- *                        See WP_Http::request() for information on return value.
+ * @return array|WP_Error {
+ *     The response array or a WP_Error on failure.
+ *
+ *     @type string[]                       $headers       Array of response headers keyed by their name.
+ *     @type string                         $body          Response body.
+ *     @type array                          $response      {
+ *         Data about the HTTP response.
+ *
+ *         @type int|false    $code    HTTP response code.
+ *         @type string|false $message HTTP response message.
+ *     }
+ *     @type WP_HTTP_Cookie[]               $cookies       Array of response cookies.
+ *     @type WP_HTTP_Requests_Response|null $http_response Raw HTTP response object.
+ * }
  */
 function wp_remote_request( $url, $args = array() ) {
 	$http = _wp_http_get_object();
@@ -170,7 +178,6 @@ function wp_remote_request( $url, $args = array() ) {
  * @param array  $args Optional. Request arguments. Default empty array.
  *                     See WP_Http::request() for information on accepted arguments.
  * @return array|WP_Error The response or WP_Error on failure.
- *                        See WP_Http::request() for information on return value.
  */
 function wp_remote_get( $url, $args = array() ) {
 	$http = _wp_http_get_object();
@@ -189,7 +196,6 @@ function wp_remote_get( $url, $args = array() ) {
  * @param array  $args Optional. Request arguments. Default empty array.
  *                     See WP_Http::request() for information on accepted arguments.
  * @return array|WP_Error The response or WP_Error on failure.
- *                        See WP_Http::request() for information on return value.
  */
 function wp_remote_post( $url, $args = array() ) {
 	$http = _wp_http_get_object();
@@ -208,7 +214,6 @@ function wp_remote_post( $url, $args = array() ) {
  * @param array  $args Optional. Request arguments. Default empty array.
  *                     See WP_Http::request() for information on accepted arguments.
  * @return array|WP_Error The response or WP_Error on failure.
- *                        See WP_Http::request() for information on return value.
  */
 function wp_remote_head( $url, $args = array() ) {
 	$http = _wp_http_get_object();
@@ -384,6 +389,8 @@ function wp_remote_retrieve_cookie_value( $response, $name ) {
  * @return bool
  */
 function wp_http_supports( $capabilities = array(), $url = null ) {
+	$http = _wp_http_get_object();
+
 	$capabilities = wp_parse_args( $capabilities );
 
 	$count = count( $capabilities );
@@ -400,7 +407,7 @@ function wp_http_supports( $capabilities = array(), $url = null ) {
 		}
 	}
 
-	return WpOrg\Requests\Requests::has_capabilities( $capabilities );
+	return (bool) $http->_get_first_available_transport( $capabilities );
 }
 
 /**
@@ -535,7 +542,7 @@ function send_origin_headers() {
  * - ftp://example.com/caniload.php - Invalid protocol - only http and https are allowed.
  * - http:///example.com/caniload.php - Malformed URL.
  * - http://user:pass@example.com/caniload.php - Login information.
- * - http://example.invalid/caniload.php - Invalid hostname, as the IP cannot be looked up in DNS.
+ * - http://exampleeeee.com/caniload.php - Invalid hostname, as the IP cannot be looked up in DNS.
  *
  * Examples of URLs that are considered unsafe by default:
  *
@@ -692,8 +699,12 @@ function ms_allowed_http_request_hosts( $is_external, $host ) {
  * A wrapper for PHP's parse_url() function that handles consistency in the return values
  * across PHP versions.
  *
- * Across various PHP versions, schemeless URLs containing a ":" in the query
- * are being handled inconsistently. This function works around those differences.
+ * PHP 5.4.7 expanded parse_url()'s ability to handle non-absolute URLs, including
+ * schemeless and relative URLs with "://" in the path. This function works around
+ * those limitations providing a standard output on PHP 5.2~5.4+.
+ *
+ * Secondly, across various PHP versions, schemeless URLs containing a ":" in the query
+ * are being handled inconsistently. This function works around those differences as well.
  *
  * @since 4.4.0
  * @since 4.7.0 The `$component` parameter was added for parity with PHP's `parse_url()`.

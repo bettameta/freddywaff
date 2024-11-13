@@ -378,11 +378,9 @@ Cropper = wp.media.controller.State.extend(/** @lends wp.media.controller.Croppe
 	 * @return {void}
 	 */
 	createCropToolbar: function() {
-		var canSkipCrop, hasRequiredAspectRatio, suggestedCropSize, toolbarOptions;
+		var canSkipCrop, toolbarOptions;
 
-		suggestedCropSize      = this.get( 'suggestedCropSize' );
-		hasRequiredAspectRatio = this.get( 'hasRequiredAspectRatio' );
-		canSkipCrop            = this.get( 'canSkipCrop' ) || false;
+		canSkipCrop = this.get('canSkipCrop') || false;
 
 		toolbarOptions = {
 			controller: this.frame,
@@ -414,7 +412,7 @@ Cropper = wp.media.controller.State.extend(/** @lends wp.media.controller.Croppe
 			}
 		};
 
-		if ( canSkipCrop || hasRequiredAspectRatio ) {
+		if ( canSkipCrop ) {
 			_.extend( toolbarOptions.items, {
 				skip: {
 					style:      'secondary',
@@ -422,26 +420,10 @@ Cropper = wp.media.controller.State.extend(/** @lends wp.media.controller.Croppe
 					priority:   70,
 					requires:   { library: false, selection: false },
 					click:      function() {
-						var controller = this.controller,
-							selection = controller.state().get( 'selection' ).first();
-
-						controller.state().cropperView.remove();
-
-						// Apply the suggested crop size.
-						if ( hasRequiredAspectRatio && !canSkipCrop ) {
-							selection.set({cropDetails: suggestedCropSize});
-							controller.state().doCrop( selection ).done( function( croppedImage ) {
-								controller.trigger( 'cropped', croppedImage );
-								controller.close();
-							}).fail( function() {
-								controller.trigger( 'content:error:crop' );
-							});
-							return;
-						}
-
-						// Skip the cropping process.
-						controller.trigger( 'skippedcrop', selection );
-						controller.close();
+						var selection = this.controller.state().get('selection').first();
+						this.controller.state().cropperView.remove();
+						this.controller.trigger('skippedcrop', selection);
+						this.controller.close();
 					}
 				}
 			});
@@ -1467,7 +1449,7 @@ Library = wp.media.controller.State.extend(/** @lends wp.media.controller.Librar
 	isImageAttachment: function( attachment ) {
 		// If uploading, we know the filename but not the mime type.
 		if ( attachment.get('uploading') ) {
-			return /\.(jpe?g|png|gif|webp|avif|heic|heif)$/i.test( attachment.get('filename') );
+			return /\.(jpe?g|png|gif|webp|avif)$/i.test( attachment.get('filename') );
 		}
 
 		return attachment.get('type') === 'image';
@@ -3088,11 +3070,6 @@ Attachment = View.extend(/** @lends wp.media.view.Attachment.prototype */{
 			method = 'between';
 		} else if ( event.ctrlKey || event.metaKey ) {
 			method = 'toggle';
-		}
-
-		// Avoid toggles when the command or control key is pressed with the enter key to prevent deselecting the last selected attachment.
-		if ( ( event.metaKey || event.ctrlKey ) && ( 13 === event.keyCode || 10 === event.keyCode ) ) {
-			return;
 		}
 
 		this.toggleSelection({
@@ -8452,29 +8429,6 @@ Modal = wp.media.View.extend(/** @lends wp.media.view.Modal.prototype */{
 	},
 
 	/**
-	 * Handles the selection of attachments when the command or control key is pressed with the enter key.
-	 *
-	 * @since 6.7
-	 *
-	 * @param {Object} event The keydown event object.
-	 */
-	selectHandler: function( event ) {
-		var selection = this.controller.state().get( 'selection' );
-
-		if ( selection.length <= 0 ) {
-			return;
-		}
-
-		if ( 'insert' === this.controller.options.state ) {
-			this.controller.trigger( 'insert', selection );
-		} else {
-			this.controller.trigger( 'select', selection );
-			event.preventDefault();
-			this.escape();
-		}
-	},
-
-	/**
 	 * @param {Array|Object} content Views to register to '.media-modal-content'
 	 * @return {wp.media.view.Modal} Returns itself to allow chaining.
 	 */
@@ -8508,13 +8462,6 @@ Modal = wp.media.View.extend(/** @lends wp.media.view.Modal.prototype */{
 			this.escape();
 			event.stopImmediatePropagation();
 		}
-
-		// Select the attachment when command or control and enter are pressed.
-		if ( ( 13 === event.which || 10 === event.which ) && ( event.metaKey || event.ctrlKey ) ) {
-			this.selectHandler( event );
-			event.stopImmediatePropagation();
-		}
-
 	}
 });
 
@@ -9226,8 +9173,8 @@ var View = wp.media.View,
  * @augments Backbone.View
  */
 SiteIconPreview = View.extend(/** @lends wp.media.view.SiteIconPreview.prototype */{
-	className: 'site-icon-preview-crop-modal',
-	template: wp.template( 'site-icon-preview-crop' ),
+	className: 'site-icon-preview',
+	template: wp.template( 'site-icon-preview' ),
 
 	ready: function() {
 		this.controller.imgSelect.setOptions({
@@ -9245,8 +9192,8 @@ SiteIconPreview = View.extend(/** @lends wp.media.view.SiteIconPreview.prototype
 	updatePreview: function( img, coords ) {
 		var rx = 64 / coords.width,
 			ry = 64 / coords.height,
-			preview_rx = 24 / coords.width,
-			preview_ry = 24 / coords.height;
+			preview_rx = 16 / coords.width,
+			preview_ry = 16 / coords.height;
 
 		$( '#preview-app-icon' ).css({
 			width: Math.round(rx * this.imageWidth ) + 'px',

@@ -19,7 +19,10 @@
  */
 function wp_credits( $version = '', $locale = '' ) {
 	if ( ! $version ) {
-		$version = wp_get_wp_version();
+		// Include an unmodified $wp_version.
+		require ABSPATH . WPINC . '/version.php';
+
+		$version = $wp_version;
 	}
 
 	if ( ! $locale ) {

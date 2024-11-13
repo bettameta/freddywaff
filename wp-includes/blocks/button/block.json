@@ -26,34 +26,34 @@
 			"source": "attribute",
 			"selector": "a",
 			"attribute": "href",
-			"role": "content"
+			"__experimentalRole": "content"
 		},
 		"title": {
 			"type": "string",
 			"source": "attribute",
 			"selector": "a,button",
 			"attribute": "title",
-			"role": "content"
+			"__experimentalRole": "content"
 		},
 		"text": {
 			"type": "rich-text",
 			"source": "rich-text",
 			"selector": "a,button",
-			"role": "content"
+			"__experimentalRole": "content"
 		},
 		"linkTarget": {
 			"type": "string",
 			"source": "attribute",
 			"selector": "a",
 			"attribute": "target",
-			"role": "content"
+			"__experimentalRole": "content"
 		},
 		"rel": {
 			"type": "string",
 			"source": "attribute",
 			"selector": "a",
 			"attribute": "rel",
-			"role": "content"
+			"__experimentalRole": "content"
 		},
 		"placeholder": {
 			"type": "string"
@@ -93,7 +93,6 @@
 			"__experimentalTextTransform": true,
 			"__experimentalTextDecoration": true,
 			"__experimentalLetterSpacing": true,
-			"__experimentalWritingMode": true,
 			"__experimentalDefaultControls": {
 				"fontSize": true
 			}

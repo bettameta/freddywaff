@@ -143,7 +143,7 @@ if ( $action ) {
 			}
 	}
 
-	update_option( 'allowedthemes', $allowed_themes, false );
+	update_option( 'allowedthemes', $allowed_themes );
 	restore_current_blog();
 
 	wp_safe_redirect(

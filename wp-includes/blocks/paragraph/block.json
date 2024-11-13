@@ -15,7 +15,7 @@
 			"type": "rich-text",
 			"source": "rich-text",
 			"selector": "p",
-			"role": "content"
+			"__experimentalRole": "content"
 		},
 		"dropCap": {
 			"type": "boolean",
@@ -33,12 +33,6 @@
 		"splitting": true,
 		"anchor": true,
 		"className": false,
-		"__experimentalBorder": {
-			"color": true,
-			"radius": true,
-			"style": true,
-			"width": true
-		},
 		"color": {
 			"gradients": true,
 			"link": true,

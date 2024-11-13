@@ -214,16 +214,12 @@ switch ( $action ) {
 
 		if ( isset( $_GET['updated'] ) ) :
 			if ( IS_PROFILE_PAGE ) :
-				$message = '<p><strong>' . __( 'Profile updated.' ) . '</strong></p>';
+				$message = '<strong>' . __( 'Profile updated.' ) . '</strong>';
 			else :
-				$message = '<p><strong>' . __( 'User updated.' ) . '</strong></p>';
+				$message = '<strong>' . __( 'User updated.' ) . '</strong>';
 			endif;
 			if ( $wp_http_referer && ! str_contains( $wp_http_referer, 'user-new.php' ) && ! IS_PROFILE_PAGE ) :
-				$message .= sprintf(
-					'<p><a href="%1$s">%2$s</a></p>',
-					esc_url( wp_validate_redirect( sanitize_url( $wp_http_referer ), self_admin_url( 'users.php' ) ) ),
-					__( '&larr; Go to Users' )
-				);
+				$message .= '<a href="' . esc_url( wp_validate_redirect( sanitize_url( $wp_http_referer ), self_admin_url( 'users.php' ) ) ) . '">' . __( '&larr; Go to Users' ) . '</a>';
 			endif;
 			wp_admin_notice(
 				$message,
@@ -231,7 +227,6 @@ switch ( $action ) {
 					'id'                 => 'message',
 					'dismissible'        => true,
 					'additional_classes' => array( 'updated' ),
-					'paragraph_wrap'     => false,
 				)
 			);
 		endif;
@@ -628,8 +623,7 @@ switch ( $action ) {
 										$description = sprintf(
 											/* translators: %s: Gravatar URL. */
 											__( '<a href="%s">You can change your profile picture on Gravatar</a>.' ),
-											/* translators: The localized Gravatar URL. */
-											__( 'https://gravatar.com/' )
+											__( 'https://en.gravatar.com/' )
 										);
 									} else {
 										$description = '';
@@ -859,7 +853,7 @@ switch ( $action ) {
 									<?php
 									printf(
 										/* translators: %s: Documentation URL. */
-										__( 'If this is a development website, you can <a href="%s">set the environment type accordingly</a> to enable application passwords.' ),
+										__( 'If this is a development website you can <a href="%s" target="_blank">set the environment type accordingly</a> to enable application passwords.' ),
 										__( 'https://developer.wordpress.org/apis/wp-config-php/#wp-environment-type' )
 									);
 									?>
@@ -984,8 +978,6 @@ switch ( $action ) {
 					?>
 				</label>
 				<input id="new-application-password-value" type="text" class="code" readonly="readonly" value="{{ data.password }}" />
-				<button type="button" class="button copy-button" data-clipboard-text="{{ data.password }}"><?php _e( 'Copy' ); ?></button>
-				<span class="success hidden" aria-hidden="true"><?php _e( 'Copied!' ); ?></span>
 			</p>
 			<p><?php _e( 'Be sure to save this in a safe location. You will not be able to retrieve it.' ); ?></p>
 			<button type="button" class="notice-dismiss">
